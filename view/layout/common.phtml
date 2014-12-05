@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="gini-locale" content="<?=H(\Gini\Config::get('system.locale'))?>"/>
+    <title><?= \Gini\Config::get('app.title') ?></title>
+    <base href="<?= H(URL('/')) ?>">
+    <link href="<?= H(RURL('bootstrap.css', 'css')) ?>" rel="stylesheet">
+    <link href="<?= H(RURL('font-awesome.css', 'css')) ?>" rel="stylesheet">
+    <link href="<?= H(RURL('bootswatch.css', 'css')) ?>" rel="stylesheet">
+    <link href="<?= H(RURL('site.css', 'css')) ?>" rel="stylesheet">
+    <script data-main="<?= H(RURL('main.js', 'js')) ?>" src="<?= H(RURL('require.js', 'js')) ?>"></script>
+    <!--[if lt IE 9]>
+    <script src="<?= H(RURL('html5shiv.js', 'js')) ?>"></script>
+    <script src="<?= H(RURL('respond.js', 'js')) ?>"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/icon/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/icon/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/icon/apple-touch-icon-72.png">
+    <link rel="shortcut icon" href="assets/icon/favicon.png">
+</head>
+<body>
+    <div id="header">
+        <?= $header ?>
+    </div>
+    <div id="body">
+        <?= $body ?>
+    </div>
+    <div id="footer">
+        <?= $footer ?>
+    </div>
+</body>
+</html>
+

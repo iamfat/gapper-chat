@@ -1,0 +1,8 @@
+---
+rpc:
+  url: http://gapper.in/api
+  client_id: b2101d317c22de5d588771042f9aed70
+  client_secret: b1dd278e4734b7e9dd00a055c824f030
+
+server_home: http://gapper.in
+...

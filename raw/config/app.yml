@@ -1,0 +1,9 @@
+---
+title: Gapper Chat
+
+rpc:
+  gapper:
+    url: http://gapper.in/api
+    client_id: gapper-chat
+    client_secret: gapper-chat
+...

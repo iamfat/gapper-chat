@@ -1,0 +1,5 @@
+<?php 
+foreach ($chats as $chat) { 
+    $user = a('user', ['username'=>$chat['username']]);
+    echo V('chat/item', ['user'=>$user, 'chat'=>$chat]);
+}

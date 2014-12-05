@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="media well">
+        <div class="media-left">
+            <img src="<?= H(_G('ME')->icon(64)) ?>" width="64" height="64" class="img-circle">
+        </div>
+        <div class="media-body" style="width:100%; padding-top:16px">
+            <form id="chat-form" action="ajax:ajax/chat/new">
+                <div class="input-group" style="width:100%">
+                    <input class="form-control" name="message">
+                    <div class="input-group-btn">
+                        <button name="_submit" class="btn btn-primary"><i class="fa fa-fw fa-comment"></i> <?= H(T('Post')) ?></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="chats" class="well">
+        <?= $chats ?>
+    </div>
+</div>
+<script data-ajax="true">
+require(['jquery'], function($){
+    setInterval(function(){
+        $('#chats').load('ajax/chat/history'); 
+    }, 2000);
+});
+</script>
