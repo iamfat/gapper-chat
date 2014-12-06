@@ -10,41 +10,20 @@ class GapperChat {
 
         class_exists('\Gini\Those');
 
-                // 获得当前的用户名, 设置全局变量ME
-        $gapperToken = $_GET['gapper-token'];
-        $gapperGroup = $_GET['gapper-group'];
-        if ($gapperToken) {
-            \Gini\Gapper\Client::logout();
-            \Gini\Gapper\Client::loginByToken($gapperToken);
-        }
-        if ($gapperGroup &&
-\Gini\Gapper\Client::getLoginStep()===\Gini\Gapper\Client::STEP_GROUP) {
-            \Gini\Gapper\Client::chooseGroup($gapperGroup);
-        }
+        \Gini\Gapper\Client::init();
 
         $username = \Gini\Gapper\Client::getUserName();
-        $gid = (int) \Gini\Gapper\Client::getGroupID();
+        $me = a('user', ['username'=>$username]);
+        $me->id or \Gini\Gapper\Client::logout();
+        _G('ME', $me);
 
-        if ($username) {
-            $me = a('user', ['username'=>$username]);
-            if (!$me->id) {
-                \Gini\Gapper\Client::logout();
-            }
-            _G('ME', $me);
-        }
+        $gid = $me->id ? (int) \Gini\Gapper\Client::getGroupID() : null;
+        $group = a('group', $gid);
+        _G('GROUP', $group);
 
-        if ($gid) {
-            $group = a('group', $gid);
-            _G('GROUP', $group);
-        }
-
-        if (isset($_GET['locale'])) {
-            $_SESSION['locale'] = $_GET['locale'];
-        }
-
-        if ($_SESSION['locale']) {
-            \Gini\Config::set('system.locale', $_SESSION['locale']);
-        }
+        // set locale
+        isset($_GET['locale']) and $_SESSION['locale'] = $_GET['locale'];
+        $_SESSION['locale'] and \Gini\Config::set('system.locale', $_SESSION['locale']);
         \Gini\I18N::setup();
 
         setlocale(LC_MONETARY, (\Gini\Config::get('system.locale') ?: 'en_US') . '.UTF-8');
